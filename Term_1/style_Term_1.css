@@ -1,0 +1,162 @@
+/* نفس الـ CSS الموجود في ملف index.html بالضبط */
+:root {
+    --primary: #8B5CF6;
+    --primary-light: #A78BFA;
+    --primary-dark: #6D28D9;
+    --secondary: #EC4899;
+    --secondary-light: #F472B6;
+    --accent: #06B6D4;
+    --dark: #0F1117;
+    --darker: #050810;
+    --light: #F8FAFC;
+    --gray: #1E293B;
+    --gray-light: #334155;
+    --gradient: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #06B6D4 100%);
+    --gradient-2: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+    --card-bg: rgba(30, 41, 59, 0.45);
+    --card-bg-hover: rgba(30, 41, 59, 0.65);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --glass: rgba(15, 17, 23, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-hover: rgba(139, 92, 246, 0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    background: linear-gradient(-45deg, #050810, #0F1117, #1a1f2e, #0a0e1a);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: gradientShift 20s ease infinite;
+    color: var(--light);
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    animation: moveBackground 30s ease infinite; z-index: -1; pointer-events: none;
+}
+
+@keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes moveBackground { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(30px, -30px); } 66% { transform: translate(-20px, 20px); } }
+
+/* Navigation - تم الإبقاء على الأنماط هنا ولكن تم حذف الـ HTML المقابل */
+.nav-toggle { display: none; }
+.sidebar { display: none; }
+
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; padding: 1.1rem 2.5rem;
+    border-radius: 60px; font-weight: 700; text-decoration: none; transition: var(--transition);
+    border: none; cursor: pointer; font-size: 1.05rem; position: relative; overflow: hidden;
+    font-family: 'Cairo', sans-serif;
+}
+.btn::before {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+    border-radius: 50%; background: rgba(255, 255, 255, 0.3); transform: translate(-50%, -50%);
+    transition: width 0.7s, height 0.7s;
+}
+.btn:hover::before { width: 350px; height: 350px; }
+.btn-primary {
+    background: var(--gradient); color: white; box-shadow: 0 10px 35px rgba(139, 92, 246, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-primary:hover { transform: translateY(-6px); box-shadow: 0 15px 50px rgba(139, 92, 246, 0.6); }
+.btn i { margin-left: 10px; z-index: 1; transition: var(--transition); }
+.btn:hover i { transform: translateX(-3px); }
+
+/* Sections */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+/* تم زيادة الـ padding-top لتعويض إزالة الـ Hero Section */
+.section { padding: 8rem 0 4rem 0; position: relative; }
+.section-header { text-align: center; margin-bottom: 4rem; animation: fadeInUp 0.8s ease-out; }
+.section-header h2 {
+    font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 800; margin-bottom: 1.2rem;
+    background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.section-header p { max-width: 650px; margin: 0 auto; opacity: 0.8; font-size: 1.15rem; font-weight: 300; }
+
+/* Cards Style (Identical to Index) */
+.terms-container {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem; justify-content: center; align-items: stretch; animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.term-card {
+    background: var(--card-bg); border-radius: 25px; overflow: hidden;
+    border: 1px solid var(--glass-border); backdrop-filter: blur(15px);
+    text-align: center; transition: var(--transition); position: relative;
+    cursor: pointer; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.term-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--gradient); opacity: 0; z-index: -1; transition: opacity 0.5s ease;
+}
+.term-card:hover {
+    transform: translateY(-20px); border-color: var(--glass-border-hover);
+    background: var(--card-bg-hover); box-shadow: 0 20px 60px rgba(139, 92, 246, 0.25);
+}
+.term-card:hover::before { opacity: 0.08; }
+.term-card-header { padding: 3rem 1.5rem 1.5rem; }
+.term-card-header i {
+    font-size: 5rem; margin-bottom: 1.2rem; background: var(--gradient);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    display: inline-block; animation: floatIcon 3.5s ease-in-out infinite;
+}
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0) rotateZ(0deg); }
+    50% { transform: translateY(-20px) rotateZ(5deg); }
+}
+.term-card-header h3 { font-size: 1.6rem; font-weight: 700; margin-top: 0.8rem; letter-spacing: -0.5px; }
+.term-card-footer { padding: 0 1.8rem 2.5rem; }
+
+/* NEW BACK BUTTON STYLE FROM USER'S CODE */
+.back-button {
+    display: flex; align-items: center; justify-content: center; width: fit-content; margin: 3rem auto 0;
+    font-size: 1.1rem; color: var(--primary-light); text-decoration: none; gap: 10px;
+    font-weight: 600; padding: 12px 30px;
+    border-radius: 40px; /* شكل دائري (Pill-shaped) */
+    border: 1px solid var(--glass-border);
+    background: var(--card-bg); /* إضافة خلفية داكنة */
+    transition: all 0.3s;
+}
+.back-button:hover {
+    border-color: var(--primary);
+    background: rgba(139, 92, 246, 0.15); /* خلفية شفافة عند التمرير */
+    transform: translateX(5px); /* تحريك خفيف عند التمرير لليمين */
+}
+/* نهاية الأنماط الجديدة */
+
+
+/* Animations */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.floating { animation: float 4.5s ease-in-out infinite; }
+.floating:nth-child(2) { animation-delay: 0.2s; }
+.floating:nth-child(3) { animation-delay: 0.4s; }
+.floating:nth-child(4) { animation-delay: 0.6s; }
+.floating:nth-child(5) { animation-delay: 0.8s; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* Footer */
+footer {
+    background: rgba(15, 17, 23, 0.9); backdrop-filter: blur(15px);
+    border-top: 1px solid var(--glass-border); padding: 3rem 0; margin-top: 4rem;
+}
+.footer-bottom { text-align: center; }
+.footer-bottom p { opacity: 0.7; font-size: 0.95rem; font-weight: 400; }
+
+@media (max-width: 768px) {
+    .section { padding-top: 6rem; padding-bottom: 4rem; }
+    .terms-container { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+    .term-card { width: 100%; }
+}

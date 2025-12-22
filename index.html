@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Hub</title>
+    <meta name="description" content="الموقع اللي هيكون عليه كل حاجه اول باول.">
+    <meta name="theme-color" content="#0F1117">
+    <link rel="icon" href="Images/Black White Simple Modern Neon Griddy Bold Technology Pixel Electronics Store Logo.jpg" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="welcome-overlay" id="welcomeOverlay">
+    <h1 class="welcome-message">أهلا بك في Study Hub</h1>
+</div>
+
+<div class="nav-toggle" id="navToggle">
+    <i class="fas fa-bars"></i>
+</div>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>Study Hub</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="#home" class="nav-item">
+            <i class="fas fa-home"></i> الرئيسية
+        </a>
+        <a href="#academic-year" class="nav-item">
+            <i class="fas fa-calendar-alt"></i> السنة الدراسية
+        </a>
+        <a href="#gpa-calculator" class="nav-item">
+            <i class="fas fa-calculator"></i> حاسبة المعدل
+        </a>
+    </nav>
+</aside>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Study Hub</h1>
+        <p>الموقع اللي هيكون عليه كل حاجه اول باول</p>
+        <div class="cta-buttons">
+            <a href="#academic-year" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> ابدأ الآن
+            </a>
+            <a href="#gpa-calculator" class="btn btn-secondary">
+                <i class="fas fa-calculator"></i> حاسبة المعدل
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="academic-year">
+    <div class="container">
+        <div class="section-header">
+            <h2>اختر الترم الدراسي</h2>
+            <p>اللي شغال حاليا الترم الاول بس</p>
+        </div>
+        <div class="terms-container">
+            <div class="term-card floating">
+                <div class="term-card-header">
+                    <i class="fas fa-book-open"></i>
+                    <h3>الترم الأول</h3>
+                </div>
+                <div class="term-card-footer">
+                    <a href="./Term_1/term_1.html" class="btn btn-primary">عرض المواد</a>
+                </div>
+            </div>
+            <div class="term-card floating">
+                <div class="term-card-header">
+                    <i class="fas fa-book"></i>
+                    <h3>الترم الثاني</h3>
+                </div>
+                <div class="term-card-footer">
+                    <a href="term2.html" class="btn btn-primary">عرض المواد</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="gpa-calculator">
+    <div class="container">
+        <div class="section-header">
+            <h2>حاسبة المعدل التراكمي</h2>
+            <p>احسب المعدل التراكمي والموقع هيحفظ كل التقديرات بتاعتك</p>
+        </div>
+        <div class="gpa-calculator-container">
+            <div class="gpa-card">
+                <div class="Style">
+                    <label for="courseName">
+                        <span class="tittle arabic">اسم المقرر:</span>
+                    </label>
+                    <input type="text" id="courseName" name="courseName" class="input" placeholder="اختياري" />
+                </div>
+                <div class="Style">
+                    <label class="arabic" for="grade">
+                        <span class="tittle">درجة المقرر:</span>
+                    </label>
+                    <select class="input" id="grade" name="grade" required></select>
+                </div>
+                <button class="arabic" type="button" onclick="addCourse()" id="addCourseLabel">
+                    أضف المادة
+                </button>
+                <h3 id="gpaLabel" class="arabic" style="margin-top:1.5rem;">
+                    <span class="tittle">معدلك التراكمي:</span>
+                </h3>
+                <h2 id="gpa">0.00</h2>
+                <div class="courselists arabic">
+                    <ul id="courseList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mohammed Hany. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
